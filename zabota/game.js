@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const rtg = 0.0174533; // 1 радус в радианах
 var cloudAr = []; // массив для облаков
 var cloudID = 0; // индицикация облаков, нужна для корректного удаления
-var cloudTimer = Math.floor(Math.random() * 1000);
+var cloudTimer = Math.floor(Math.random() * 1000); // тиаймер КД спавна облака
 var sunAr = []; //массив солнца
 
 //настройка
