@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 const rtg = 0.0174533; // 1 радус в радианах
 var cloudAr = []; // массив для облаков
 var cloudID = 0; // индицикация облаков, нужна для корректного удаления
-var cloudTimer = Math.floor(Math.random() * 10)*1000;
+var cloudTimer = Math.floor(Math.random() * 1000);
 var sunAr = []; //массив солнца
 
 //настройка
@@ -29,8 +29,8 @@ setInterval(Update, 1000 / 60); //Состояние игры будет обн�
 function Update() //Обновление игры
 {
     for(let i = 0; i < cloudAr.length; i++){cloudAr[i].update();}
-    Draw();
     CloudF();
+    Draw();
 }
 
 function Draw() //Работа с графикой
@@ -56,11 +56,11 @@ function Resize()
 }
 function CloudF()
 {
-    if (Math.floor(Math.random() * 2) == 1) {
+    if (Math.floor(Math.random() * 2) == 1 && cloudTimer <=0)  {
         cloudAr.push(new cloud(cloudID++));
-        cloudTimer = Math.floor(Math.random() * 10)*1000;
+        cloudTimer = Math.floor(Math.random() * 1000);
     }
-    cloudTimer -=1;
+    cloudTimer--;
 
 }
 
@@ -94,7 +94,7 @@ class cloud{
         this.image = new Image();                   //создаем изображени
         this.image.src = "img/cloud/"+im+".png";    //присваиваем изображение
 
-        this.speed=Math.floor(Math.random() * 20)+1;    //генерируем скорость облака
+        this.speed=Math.floor(Math.random() * 10)+1;    //генерируем скорость облака
 
         if (Math.floor(Math.random() * 101) > 90){  // куда будет двигаться и где заспавниться, если 1 то слева на право
             this.x=-this.image.width;
